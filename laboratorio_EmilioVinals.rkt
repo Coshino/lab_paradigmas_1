@@ -1,15 +1,48 @@
 #lang racket
+;TDA
+;CONSTRUCTORES
+;representación: letter(String) x name(String) x capacity(int) x content(list)
+(define make-drive
+  (lambda (letter name capacity)
+    (list letter name capacity)))
 
+(define make-system
+  (lambda (name users drives current-user current-drive current-path)
+    (list name users drives current-user current-drive current-path)))
 
+;--------------------------------------------------
+
+;SELECTORES
+;Obtiene el primer elemento, la letra del drive
+(define get-drive-letter car)
+;obtiene el segundo elemento de la lista, el nombre del drive
+(define get-drive-name cadr)
+;obtiene el tercer elemento de la lista, la capacidad del drive
+(define get-drive-capacity caddr)
+
+;----------------------------------------------
+
+;funcion que obtiene el nombre del sistema, que es el primer elemento ded la lista
 (define get-system-name car)  ;System -> String
+
+;funcion que obitene a los usuarios, que son listas dentro deel sistema, sin contar la primera posicion
 (define get-system-users cadr) ;System -> String List
+
+;obtiene los drives deel sistema aplicando un car y cdr, genera una lista
 (define get-system-drives caddr) ;System -> Drive List
+
+;obtiene el nombre de usuario actual, en la 4ta posicion de la lista, es un string
 (define get-system-current-user cadddr) ;System -> String
-(define get-system-current-drive (lambda (system) (car (cdr (cdr (cdr (cdr system))))))) ;System -> char
+
+;
+(define get-system-current-drive
+  (lambda (system)
+    (car (cdr (cdr (cdr (cdr system))))))) ;System -> char
 (define get-system-current-path (lambda (system) (car (cdr (cdr (cdr (cdr (cdr system)))))))) ;System -> String
 
-;; Modificador TDA System
+;--------------------------------------------
 
+;; Modificadores
 ;; agregar nuevo drive (se usa en RF4 add-drive)
 (define system-add-drive
   (lambda (system new-drive)
@@ -39,31 +72,14 @@
   (member user (get-system-users system)))
 
 
-;;;; Implementacion TDAs ;;;;
-
-;TDA Drive
-; Capa Constructor Drive
-;representación: letter (String) x name (String) x capacity (int) x content (list)
-(define make-drive
-  (lambda (letter name capacity)
-    (list letter name capacity)))
-
-
-; Capa Selector Drive
-(define get-drive-letter car)
-(define get-drive-name cadr)
-(define get-drive-capacity caddr)
-
-;Dominio:
-;Recorrido
+;Dominio: string con el nombre del sistema
+;Recorrido: lista, el primer elemento de la lista es el nombre otorgado
 (define (system name)
   (list name '() '() "" #\0 ""))
 
 ;; Para hacer RF4 es necesario hacer un constructor que no retorne una estructura vacia
 
-(define make-system
-  (lambda (name users drives current-user current-drive current-path)
-    (list name users drives current-user current-drive current-path)))
+
 
 (define (run system cmd)
   (cmd system))
@@ -90,7 +106,7 @@
           system)))) ;; si usuario existe, retornar sistema sin cambios
 
 
-
+;Creacion del sistema
 (define S0 (system "newSystem"))
 S0
 
