@@ -37,7 +37,7 @@
 ;obtiene el nombre de usuario actual, en la 4ta posicion de la lista, es un string
 (define get-system-current-user cadddr) ;System -> String
 
-;
+;Obtiene el drive actual en el que se encuentra en el sistema
 (define get-system-current-drive
   (lambda (system)
     (car (cdr (cdr (cdr (cdr system))))))) ;System -> char
@@ -46,7 +46,9 @@
 ;--------------------------------------------
 
 ;; Modificadores
-;; agregar nuevo drive (se usa en RF4 add-drive)
+;; agregar nuevo drive
+;Dom: system string
+;Rec: lista actualizada
 (define system-add-drive
   (lambda (system new-drive)
     (make-system (get-system-name system)
@@ -56,7 +58,7 @@
                  (get-system-current-drive system)
                  (get-system-current-path system))))
 
-;; agregar nuevo drive (se usa en RF5 add-user)
+;; agregar nuevo drive
 (define system-add-user
   (lambda (system new-user)
     (make-system (get-system-name system)
@@ -67,7 +69,7 @@
                  (get-system-current-path system))))
 
 ;; Capa Pertenencia TDA System
-;; member verifica si existe un elemento de una lista, true si existe, else false
+;; member verifica si existe un elemento de una lista, true si existe
 (define (exists-system-drive? letter system)
   (member letter (map get-drive-letter (get-system-drives system))))
 
@@ -80,13 +82,16 @@
 (define (system name)
   (list name '() '() "" #\0 ""))
 
-;; Para hacer RF4 es necesario hacer un constructor que no retorne una estructura vacia
 
-
-
+;Funcion para hacer correr un comando en el sistema
+;Dom: system string y cmd funcion
+;Rec: llama a la funcion correspondiente, system
 (define (run system cmd)
   (cmd system))
 
+;Funcion para crear un nuevo drive en el sistema
+;Dom: system string X name string X capacity int
+;Rec: system, genera la nueva lista con el nuevo drive agregado
 (define add-drive
   (lambda (system)
     (lambda (letter name capacity)
@@ -95,9 +100,8 @@
                             (make-drive letter name capacity))
           system)))) ;;else return system
 
-;; currificado
-;; Dom: System X
-;;      username (str)
+;Funcion para agregar un nuevo usuario al sistema
+;; Dom: System X username (str)
 ;; Rec: System
 (define add-user
   (lambda (system)
@@ -110,7 +114,6 @@
 ;Creacion del sistema
 (define S0 (system "newSystem"))
 S0
-
 ;añadiendo unidades. Incluye caso S2 que intenta añadir unidad con una letra que ya existe
 (define S1 ((run S0 add-drive) #\C "SO" 1000))
 S1
