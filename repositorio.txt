@@ -1,2 +1,2 @@
 #Repositorio de GitHub
-https://github.com/Coshino/195145245-Lab1
+https://github.com/Coshino/lab_paradigmas_1
