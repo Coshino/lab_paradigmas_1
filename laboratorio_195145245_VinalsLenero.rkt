@@ -111,20 +111,26 @@
           system)))) ;; si usuario existe, retornar sistema sin cambios
 
 
+;--------------------------------------------------
+;--------------------------------------------------
+;[[[[[[ ESPACIO PARA PRUEBAS]]]]]
+;--------------------------------------------------
+;--------------------------------------------------
+
 ;Creacion del sistema
-(define S0 (system "newSystem"))
+(define S0 (system "Original"))
 S0
 ;añadiendo unidades. Incluye caso S2 que intenta añadir unidad con una letra que ya existe
-(define S1 ((run S0 add-drive) #\C "SO" 1000))
+(define S1 ((run S0 add-drive) #\C "SO" 256))
 S1
-(define S2 ((run S1 add-drive) #\C "SO1" 3000))
+(define S2 ((run S1 add-drive) #\D "Trabajos" 512))
 S2
-(define S3 ((run S2 add-drive) #\D "Util" 2000))
+(define S3 ((run S2 add-drive) #\E "Juegos" 1024))
 S3
-;añadiendo usuarios. Incluye caso S6 que intenta registrar usuario duplicado
-(define S4 ((run S3 add-user) "user1"))
+;añadiendo usuarios.
+(define S4 ((run S3 add-user) "Usuario_Trabajo"))
 S4
-(define S5 ((run S4 add-user) "user1")) ;; retorna system actual sin cambios
+(define S5 ((run S4 add-user) "Usuario_Familia"))
 S5
-(define S6 ((run S5 add-user) "user2"))
+(define S6 ((run S5 add-user) "Usuario_Juegos"))
 S6
