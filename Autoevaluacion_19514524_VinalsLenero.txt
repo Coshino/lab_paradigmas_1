@@ -9,7 +9,7 @@ Documentacion: 0.75
 Dom-Rec: 0.75
 Organizacion: 1
 Historial: 1
-Scripts de prueba:
+Scripts de prueba: 1
 Prerrequisitos: 1
 
 Requerimientos Funcionales

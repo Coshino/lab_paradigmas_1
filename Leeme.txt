@@ -5,7 +5,7 @@ Instrucciones de uso para las pruebas del código
 	(Están indicadas como "Prueba Defecto", "Prueba 1", etc)
 3. Copiar las lineas de codigo correspondiente entre cada titulo, estan separadas por guiones "-"
 4. Pegar las lineas en la parte inferior del código, está comentado al final como [ESPACIO PARA PRUEBAS]
-	(El archivo del código se llama "laboratorio_195145245_VinalsLenero.rkt")
+	(El archivo del código se llama "laboratorio_19514524_VinalsLenero.rkt")
 5. Correr el codigo
 
 Observacion

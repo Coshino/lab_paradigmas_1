@@ -1,4 +1,5 @@
 #lang racket
+
 ;TDA
 ;CONSTRUCTORES
 ;representación: letter(String) x name(String) x capacity(int) x content(list)
