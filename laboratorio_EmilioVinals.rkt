@@ -2,10 +2,13 @@
 ;TDA
 ;CONSTRUCTORES
 ;representación: letter(String) x name(String) x capacity(int) x content(list)
+;Crea el drive, recive una letra, nombre y capacidad del drive a crear y los transforma en lista
+;Dom: por lambda -> letter(string) X name(string) X capacity(int)
+;Rec: list
 (define make-drive
   (lambda (letter name capacity)
     (list letter name capacity)))
-
+;representación: name(string) X users(name) X drives
 (define make-system
   (lambda (name users drives current-user current-drive current-path)
     (list name users drives current-user current-drive current-path)))
@@ -91,8 +94,6 @@
           (system-add-drive system    ;;if true then create a new system with the drive
                             (make-drive letter name capacity))
           system)))) ;;else return system
-
-;; RF5. TDA system - register
 
 ;; currificado
 ;; Dom: System X
